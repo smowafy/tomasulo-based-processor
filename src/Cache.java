@@ -29,8 +29,9 @@ public class Cache {
 		if (probableData != null) return probableData;
 		else {
 			if (higherLevel == null) {
-				mainMemory.fetchData(address, blockSize);
-				return null;
+				int[] toBeSaved = mainMemory.fetchData(address, blockSize);
+				sets.get(index).writeData(address, toBeSaved);
+				return toBeSaved;
 			} else {
 				int[] upperCacheBlock = higherLevel.getBlock(address);
 				int startAddress = address/upperCacheBlock.length*upperCacheBlock.length;
