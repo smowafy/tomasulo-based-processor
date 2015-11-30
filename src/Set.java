@@ -18,12 +18,17 @@ public class Set {
 		}
 	}
 	
-	public int checkForData(int address) {
+	public int[] checkForData(int address) {
 		for(Block tmp : blocks) {
-			int probableData = tmp.checkForData(address);
-			if (probableData != -1) return probableData;
+			int[] probableData = tmp.checkForData(address);
+			if (probableData != null) return probableData;
 		}
-		return -1;
+		return null;
+	}
+	
+	public void writeData(int address, int[] data) {
+		//TODO block choosing policy
+		blocks.get(0).writeData(address, data);
 	}
 	
 }

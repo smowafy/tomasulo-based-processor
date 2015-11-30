@@ -16,19 +16,19 @@ public class Block {
 		cacheAssociativity = assoc;
 	}
 	
-	public int checkForData(int address) {
+	public int[] checkForData(int address) {
 		int addressTag = address/cacheAssociativity/data.length;
 		if (valid && addressTag == tag) {
-			return data[address%data.length];
+			return data;
 		} else {
-			return -1;
+			return null;
 		}
 	}
 	
-	public void writeData(int address, int data) {
+	public void writeData(int address, int[] data) {
 		valid = true;
 		tag = address/cacheAssociativity/this.data.length;
-		this.data[address%this.data.length] = data;
+		this.data = data;
 	}
 	
 	
