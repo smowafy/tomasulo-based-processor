@@ -1,13 +1,15 @@
 import FunctionalUnits.Adder;
 import FunctionalUnits.FunctionalUnit;
+import FunctionalUnits.Multiplier;
 import FunctionalUnits.Nand;
 import FunctionalUnits.Subtracter;
+import Instructions.Instruction;
 
 
 public class Station {
 	private String name;
 	private boolean busy;
-	private int opcode;
+	private Instruction ins; // ins object
 	private int vJ; // if int change the funits inputs to int
 	private int vK;
 	private int qJ;
@@ -27,6 +29,9 @@ public class Station {
 				this.funit = new Subtracter();
 			}
 			else{
+				if (this.name.startsWith("Mul")) {
+					this.funit = new Multiplier();
+				}
 				this.funit = new Nand();
 			}
 		}
