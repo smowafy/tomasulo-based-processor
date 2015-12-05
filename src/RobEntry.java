@@ -17,6 +17,15 @@ public class RobEntry {
 		this.value = -1;
 		this.ready = false;			
 	}
+	public void setHead(){
+		this.head = true;
+	}
+	public void setTail(){
+		this.tail = true;
+	}
+	public void resetTail(){
+		this.tail = false;
+	}
 	
 	
 	
