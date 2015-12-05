@@ -15,5 +15,13 @@ public class ReorderBuffer {
 	public boolean isFull(){
 		return this.buffer.size() == this.size;
 	}
+	
+	public void add(){
+		
+	}
+	
+	public void delete(){
+		
+	}
 
 }

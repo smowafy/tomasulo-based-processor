@@ -10,8 +10,8 @@ public class Station {
 	private String name;
 	private boolean busy;
 	private Instruction ins; // ins object
-	private int vJ; // if int change the funits inputs to int
-	private int vK;
+	private int[] vJ; // if int change the funits inputs to int
+	private int[] vK;
 	private int qJ;
 	private int qK;
 	private int dest;
