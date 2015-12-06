@@ -1,3 +1,4 @@
+package Registers;
 
 public class RegisterStatEntry {
 	private String name;

@@ -1,16 +1,18 @@
+package Buffers;
+
 import java.util.LinkedList;
 
 import Instructions.*;
 
-public class ReorderBuffer {
-	private int size;
+public class ReorderBuffer extends Buffer{
+	//private int size;
 	//private int head; // no need to head as we remove first committed instruction when done,
 						//so automatically head is the next first
 	//private int tail;
 	private LinkedList<RobEntry> buffer;
 	
 	public ReorderBuffer(int size){
-		this.size = size;
+		super(size);
 		this.buffer = new LinkedList<RobEntry>();
 	}
 	

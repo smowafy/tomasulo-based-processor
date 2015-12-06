@@ -1,5 +1,7 @@
 package Instructions;
 
+import Registers.Registers;
+
 
 public class MulIns extends Instruction{
 	
@@ -11,19 +13,19 @@ public class MulIns extends Instruction{
 	
 	public int getOp(){
 		int []op = {this.instruction[0],this.instruction[1],this.instruction[2],this.instruction[3]};
-		return intArrayToInt(op);
+		return Registers.intArrayToInt(op);
 	}
 	public int getrs(){
 		int []rs = {this.instruction[4],this.instruction[5],this.instruction[6]};
-		return intArrayToInt(rs);
+		return Registers.intArrayToInt(rs);
 	}
 	public int getrt(){
 		int []rt = {this.instruction[7],this.instruction[8],this.instruction[9]};
-		return intArrayToInt(rt);
+		return Registers.intArrayToInt(rt);
 	}
 	public int getrd(){
 		int []rd = {this.instruction[10],this.instruction[11],this.instruction[12]};
-		return intArrayToInt(rd);
+		return Registers.intArrayToInt(rd);
 	}
 	public String getrdname(){
 		return "R"+this.getrd();
@@ -34,16 +36,6 @@ public class MulIns extends Instruction{
 	public String getrtname(){
 		return "R"+this.getrt();
 	}
-	public int intArrayToInt(int[] register)
-	{
-		int value = 0;
-		int power= 0;
-		for(int i = register.length-1; i>=0; i--)
-		{
-			value += (int) (register[i]*Math.pow(2, power));
-			power+=1;
-		}
-		return value;
-	}
+
 
 }
