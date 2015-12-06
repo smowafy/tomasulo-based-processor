@@ -1,5 +1,5 @@
 package Instructions;
-
+import Registers.*;
 public class Instruction {
 	protected String type;
 	protected int[] instruction;

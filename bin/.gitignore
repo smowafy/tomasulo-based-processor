@@ -1,3 +1,14 @@
 /RegisterStat.class
 /RegisterStatEntry.class
 /Instructions/
+/FunctionalUnits/
+/MemoryHierarchy/
+/.DS_Store
+/Registers.class
+/Program.class
+/Processor.class
+/Tomasulo/
+/Registers/
+/RegisterStatus/
+/ReservationStation/
+/Buffers/
