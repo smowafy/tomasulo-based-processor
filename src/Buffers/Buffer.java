@@ -8,4 +8,7 @@ public class Buffer {
 	public Buffer(int size){
 		this.size = size;
 	}
+	public int getSize(){
+		return this.size;
+	}
 }

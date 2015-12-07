@@ -1,9 +1,9 @@
 package FunctionalUnits;
 
 import Registers.Registers;
+import Tomasulo.Processor;
 
-
-public class Subtracter implements FunctionalUnit{
+public class Loader implements FunctionalUnit{
 	private int latency;
 	
 	public int getLatency() {
@@ -13,13 +13,12 @@ public class Subtracter implements FunctionalUnit{
 		this.latency = latency;
 	}
 	@Override
-	public int[] doOperation(int []x, int []y) {
-		// TODO Auto-generated method stub
+	public int[] doOperation(int[] x, int[] y) {
 		int a = Registers.intArrayToInt(x);
 		int b = Registers.intArrayToInt(y);
-		
-		return Registers.IntToIntArray(a-b);
+		int address = a+b;
+		return Processor.getProcessor().getDataMemory().getBlock(address); //getBlock to be changed
 	}
-
-
+	
+	// nzbat latency // memory // pc 
 }

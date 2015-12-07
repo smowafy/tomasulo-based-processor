@@ -1,13 +1,14 @@
 package ReservationStation;
 import FunctionalUnits.Adder;
 import FunctionalUnits.FunctionalUnit;
+import FunctionalUnits.Loader;
 import FunctionalUnits.Multiplier;
 import FunctionalUnits.Nand;
 import FunctionalUnits.Subtracter;
 import Instructions.Instruction;
 
 
-public class Station {
+public abstract class Station {
 	private String name;
 	private boolean busy;
 	private Instruction ins; // ins object
@@ -18,23 +19,67 @@ public class Station {
 	private int dest;
 	private int address;
 	private FunctionalUnit funit;
-	
+
 	public Station(String name){
 		this.name = name;
-		if(this.name.startsWith("load") || this.name.startsWith("add") || this.name.startsWith("store") ||
-				this.name.startsWith("addi")){
-			this.funit = new Adder();
-		}
-		else{
-			if (this.name.startsWith("Sub")) {
-				this.funit = new Subtracter();
-			}
-			else{
-				if (this.name.startsWith("Mul")) {
-					this.funit = new Multiplier();
-				}
-				this.funit = new Nand();
-			}
-		}
+	}
+	public abstract void issue(Instruction x);
+	
+	public String getName(){
+		return this.name;
+	}
+	public boolean getBusy(){
+		return this.busy;
+	}
+	public void setBusy(){
+		this.busy = true;
+	}
+	public FunctionalUnit getFunit() {
+		return funit;
+	}
+	public void setFunit(FunctionalUnit funit) {
+		this.funit = funit;
+	}
+	public Instruction getIns() {
+		return ins;
+	}
+	public void setIns(Instruction ins) {
+		this.ins = ins;
+	}
+	public int[] getvJ() {
+		return vJ;
+	}
+	public void setvJ(int[] vJ) {
+		this.vJ = vJ;
+	}
+	public int[] getvK() {
+		return vK;
+	}
+	public void setvK(int[] vK) {
+		this.vK = vK;
+	}
+	public int getqJ() {
+		return qJ;
+	}
+	public void setqJ(int qJ) {
+		this.qJ = qJ;
+	}
+	public int getqK() {
+		return qK;
+	}
+	public void setqK(int qK) {
+		this.qK = qK;
+	}
+	public int getDest() {
+		return dest;
+	}
+	public void setDest(int dest) {
+		this.dest = dest;
+	}
+	public int getAddress() {
+		return address;
+	}
+	public void setAddress(int address) {
+		this.address = address;
 	}
 }
