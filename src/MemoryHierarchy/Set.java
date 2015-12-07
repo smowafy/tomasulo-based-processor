@@ -20,15 +20,15 @@ public class Set {
 		}
 	}
 	
-	public int[] checkForData(int address) {
+	public int[][] checkForData(int address) {
 		for(Block tmp : blocks) {
-			int[] probableData = tmp.checkForData(address);
+			int[][] probableData = tmp.checkForData(address);
 			if (probableData != null) return probableData;
 		}
 		return null;
 	}
 	
-	public void writeData(int address, int[] data) {
+	public void writeData(int address, int[][] data) {
 		//TODO block choosing policy
 		blocks.get(0).writeData(address, data);
 	}

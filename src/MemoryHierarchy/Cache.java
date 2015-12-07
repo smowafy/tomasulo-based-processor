@@ -27,22 +27,22 @@ public class Cache {
 		}
 	}
 	
-	public int[] getBlock(int address) {
+	public int[][] getBlock(int address) {
 		MemorySet.cycles += cycleCount;
 		int index = (address/blockSize)%setCount;
-		int[] probableData = sets.get(index).checkForData(address);
+		int[][] probableData = sets.get(index).checkForData(address);
 		if (probableData != null) return probableData;
 		else {
 			if (higherLevel == null) {
-				int[] toBeSaved = mainMemory.fetchData(address, blockSize);
+				int[][] toBeSaved = mainMemory.fetchData(address, blockSize);
 				sets.get(index).writeData(address, toBeSaved);
 				return toBeSaved;
 			} else {
-				int[] upperCacheBlock = higherLevel.getBlock(address);
+				int[][] upperCacheBlock = higherLevel.getBlock(address);
 				int startAddress = address/upperCacheBlock.length*upperCacheBlock.length;
 				int myStartAddress = address/blockSize*blockSize;
 				int offset = myStartAddress - startAddress;
-				int[] dataToBeSaved = new int[blockSize];
+				int[][] dataToBeSaved = new int[blockSize][];
 				for(int i = 0; i < blockSize; i++) {
 					dataToBeSaved[i] = upperCacheBlock[i + offset];
 				}
@@ -69,7 +69,9 @@ public class Cache {
 	}
 	
 	
-	
+	public int getBlockSize() {
+		return blockSize;
+	}
 
 	
 	
