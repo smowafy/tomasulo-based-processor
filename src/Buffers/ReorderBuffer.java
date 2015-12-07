@@ -37,5 +37,11 @@ public class ReorderBuffer extends Buffer{
 		this.buffer.removeFirst();
 		this.buffer.getFirst().setHead();
 	}
+	public void issue(Instruction x){
+		
+	}
+	public RobEntry getEntry(int i){
+		return this.buffer.get(i);
+	}
 
 }

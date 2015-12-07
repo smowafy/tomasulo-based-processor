@@ -14,12 +14,17 @@ public class InstructionBuffer extends Buffer{
 	public boolean isFull(){
 		return size == this.buffer.size();
 	}
-	
+	public boolean isEmpty(){
+		return this.buffer.isEmpty();
+	}
 	public void insertInstruction(Instruction x){
 		this.buffer.add(x);
 	}
 	
-	public void removeInstruction(Instruction x){
+	public void removeInstruction(){
 		this.buffer.remove();
+	}
+	public Instruction getFirst(){
+		return this.buffer.peek();
 	}
 }
