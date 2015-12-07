@@ -1,3 +1,4 @@
+package Registers;
 import java.util.HashMap;
 
 //most significant bit is the 0 index of an array and bits are converted in 2's complement

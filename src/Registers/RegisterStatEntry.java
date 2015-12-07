@@ -1,3 +1,4 @@
+package Registers;
 
 public class RegisterStatEntry {
 	private String name;
@@ -10,6 +11,12 @@ public class RegisterStatEntry {
 	
 	public boolean getBusy(){
 		return this.busy;
+	}
+	public void setReorder(int i){
+		this.reorder = 1;
+	}
+	public void setBusy(boolean x){
+		this.busy = x;
 	}
 	public int getReorder(){
 		return this.reorder;
