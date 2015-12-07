@@ -25,11 +25,13 @@ public class MemorySet {
 		caches.getLast().setMainMemory(mainMemory);
 	}
 	
-	public int[] getBlock(int address) {
+	public int[] getWord(int address) {
 		cycles = 0;
-		int threshold = (1 << 8);
-		return caches.getFirst().getBlock(address);
+		int[][] tmpBlock = caches.getFirst().getBlock(address);
+		return tmpBlock[address % caches.getFirst().getBlockSize()];
 	}
+	
+	
 	
 	public int getNumberOfCyclesSpent() {
 		return cycles;

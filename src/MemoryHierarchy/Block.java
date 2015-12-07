@@ -3,7 +3,7 @@ package MemoryHierarchy;
 public class Block {
 	private boolean valid;
 	private int tag;
-	private int[] data;
+	private int[][] data;
 	private int cacheSize;
 	private int cacheAssociativity;
 	private int blockSize;
@@ -13,11 +13,11 @@ public class Block {
 		tag = 0;
 		blockSize = blockSizeInBytes;
 		cacheSize = cachesz;
-		data = new int[blockSizeInBytes];
+		data = new int[blockSizeInBytes][16];
 		cacheAssociativity = assoc;
 	}
 	
-	public int[] checkForData(int address) {
+	public int[][] checkForData(int address) {
 		int addressTag = address/cacheAssociativity/data.length;
 		if (valid && addressTag == tag) {
 			return data;
@@ -26,7 +26,7 @@ public class Block {
 		}
 	}
 	
-	public void writeData(int address, int[] data) {
+	public void writeData(int address, int[][] data) {
 		valid = true;
 		tag = address/cacheAssociativity/this.data.length;
 		this.data = data;
