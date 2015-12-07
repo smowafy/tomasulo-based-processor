@@ -23,6 +23,12 @@ public class Registers {
         }
     }
     //----------------------------------------------------------------------------------
+    //get the data of the register
+    public int [] getRegData(String regName)
+    {
+        return this.Registers.get(regName);
+    }
+    //----------------------------------------------------------------------------------
     //clear the register given in the function
     public void clearReg(String regName)
     {
