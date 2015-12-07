@@ -2,7 +2,7 @@ package inputOutput;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.StringTokenizer;
+
 
 public class InputOutput {
 
@@ -83,7 +83,7 @@ public class InputOutput {
 		System.out.println("	Specify starting address:");
 		String startingAddress = br.readLine();
 		
-		System.out.println("	 Enter program (in the form 'op dist, src, trg' without quotations, empty line at the end): ");
+		System.out.println("	 Enter program (in the form 'op dest src trg' without quotations, empty line at the end): ");
 		ArrayList<String> program = new ArrayList<String>();
 		String s;
 		while((s = br.readLine()) != null && s.length() > 0) {
@@ -93,14 +93,13 @@ public class InputOutput {
 		
 		System.out.println();
 		System.out.println("Data:");
-		System.out.println("	Specify data and address in the form 'byte address' without quotations, address in haxadecimal, and empty line at the end: ");
+		System.out.println("	Specify data and address in the form 'data address' without quotations, address in haxadecimal, and empty line at the end: ");
 		ArrayList<String> data = new ArrayList<String>();
-		ArrayList<String> address = new ArrayList<String>();
-		StringTokenizer st;
+
 		s = null;
-		while((s = br.readLine()) != null && s.length() > 0 && (st = new StringTokenizer(s)).countTokens() == 2) {
-			data.add(st.nextToken());
-			address.add(st.nextToken());
+		while((s = br.readLine()) != null && s.length() > 0) {
+			data.add(s);
+
 		}
 		// Send data to processor
 		
