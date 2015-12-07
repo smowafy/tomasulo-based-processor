@@ -38,10 +38,18 @@ public class ReorderBuffer extends Buffer{
 		this.buffer.getFirst().setHead();
 	}
 	public void issue(Instruction x){
-		
+		add(x);
 	}
 	public RobEntry getEntry(int i){
 		return this.buffer.get(i);
 	}
-
+	public int getEntryno(Instruction x){
+		int result = 0;
+		for (int i = 0; i < this.buffer.size(); i++) {
+			if (this.buffer.get(i).getInstruction().equals(x)) {
+				result = this.buffer.get(i).getEntryno();
+			}
+		}
+		return result;
+	}
 }

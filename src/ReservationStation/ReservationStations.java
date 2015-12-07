@@ -16,19 +16,19 @@ public class ReservationStations {
 			this.stationList.add(new StoreStation("Store"+i));
 		}
 		for (int i = 0; i < add; i++) {
-			this.stationList.add(new ArithStation("Add"+i));
+			this.stationList.add(new AddStation("Add"+i));
 		}
 		for (int i = 0; i < sub; i++) {
-			this.stationList.add(new ArithStation("Sub"+i));
+			this.stationList.add(new SubStation("Sub"+i));
 		}
 		for (int i = 0; i < mul; i++) {
-			this.stationList.add(new ArithStation("Mul"+i));
+			this.stationList.add(new MulStation("Mul"+i));
 		}
 		for (int i = 0; i < addi; i++) {
 			this.stationList.add(new AddiStation("Adi"+i));
 		}
 		for (int i = 0; i < nand; i++) {
-			this.stationList.add(new ArithStation("Nand"+i));
+			this.stationList.add(new NandStation("Nand"+i));
 		}
 	}
 	

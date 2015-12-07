@@ -14,9 +14,11 @@ public class Loader implements FunctionalUnit{
 	}
 	@Override
 	public int[] doOperation(int[] x, int[] y) {
-		int address = Registers.intArrayToInt(x);
+		int a = Registers.intArrayToInt(x);
+		int b = Registers.intArrayToInt(y);
+		int address = a+b;
 		return Processor.getProcessor().getDataMemory().getBlock(address); //getBlock to be changed
 	}
 	
-
+	// nzbat latency // memory // pc 
 }

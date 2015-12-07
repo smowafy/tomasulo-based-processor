@@ -1,27 +1,26 @@
 package ReservationStation;
 
-import FunctionalUnits.Adder;
-import Instructions.Instruction;
-import Instructions.StoreIns;
+import FunctionalUnits.*;
+
+import Instructions.*;
 import Registers.Registers;
 import Tomasulo.Processor;
 
-public class StoreStation extends Station{
+public class AddStation extends Station{
 
-	public StoreStation(String name) {
+	public AddStation(String name) {
 		super(name);
 		this.setFunit(new Adder());
 	}
-
-	@Override
 	public void issue(Instruction x){
 		int rob = Processor.getProcessor().getReorderBuffer().getEntryno(x);
 		this.setBusy();
 		this.setDest(rob);
 		this.setIns(x);
 		
-		String rs = ((StoreIns)x).getrsname();
-		String rt = ((StoreIns)x).getrtname();
+		String rs = ((AddIns)x).getrsname();
+		String rt = ((AddIns)x).getrtname();
+		String rd = ((AddIns)x).getrdname();
 		
 		//RS
 		if (Processor.getProcessor().getRegisterStat().checkBusy(rs)) {
@@ -56,10 +55,12 @@ public class StoreStation extends Station{
 			this.setqK(0);
 		}
 		
-		//Immediate
-		this.setAddress(((StoreIns)x).getimmm());
+		//RD
+		this.setDest((int)rd.charAt(1));
 		
+		//upDate RegisterStat
+		Processor.getProcessor().getRegisterStat().getReg((int)rd.charAt(1)).setBusy(true);
+		Processor.getProcessor().getRegisterStat().getReg((int)rd.charAt(1)).setReorder(rob);
 
 	}
-
 }

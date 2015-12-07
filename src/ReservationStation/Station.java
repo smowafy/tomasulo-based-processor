@@ -31,6 +31,9 @@ public abstract class Station {
 	public boolean getBusy(){
 		return this.busy;
 	}
+	public void setBusy(){
+		this.busy = true;
+	}
 	public FunctionalUnit getFunit() {
 		return funit;
 	}

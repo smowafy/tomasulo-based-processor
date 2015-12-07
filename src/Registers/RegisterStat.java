@@ -17,6 +17,10 @@ public class RegisterStat {
 		 int index = reg.charAt(1);
 		 return ((RegisterStatEntry)this.registers.get(index)).getBusy();
 	 }
+	 public int getReorder(String reg){
+		 int index = reg.charAt(1);
+		 return ((RegisterStatEntry)this.registers.get(index)).getReorder();
+	 }
 	 public RegisterStatEntry getReg(int i){
 		 return this.registers.get(i);
 	 }
@@ -26,5 +30,6 @@ public class RegisterStat {
 	public void setSize(int size) {
 		this.size = size;
 	}
+	
 
 }

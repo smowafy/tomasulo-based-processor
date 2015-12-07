@@ -76,8 +76,8 @@ public class Processor {
 		if (this.fetchCycles==0) {
 		//issue
 			if (!this.reservationStation.ifFull() && !this.reorderBuffer.isFull()) {
-				this.reservationStation.issue(this.insBuffer.getFirst());
 				this.reorderBuffer.issue(this.insBuffer.getFirst());
+				this.reservationStation.issue(this.insBuffer.getFirst());
 				this.insBuffer.removeInstruction();
 			}
 		//execute
