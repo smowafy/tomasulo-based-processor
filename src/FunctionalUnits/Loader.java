@@ -3,7 +3,7 @@ package FunctionalUnits;
 import Registers.Registers;
 import Tomasulo.Processor;
 
-public class Loader implements FunctionalUnit{
+public class Loader extends FunctionalUnit{
 	private int latency;
 	
 	public int getLatency() {

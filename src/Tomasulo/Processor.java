@@ -5,6 +5,7 @@ import Instructions.*;
 import MemoryHierarchy.*;
 import Registers.*;
 import ReservationStation.*;
+import Buffers.*;
 
 public class Processor {
 	private static Processor processor;
@@ -81,6 +82,51 @@ public class Processor {
 				this.insBuffer.removeInstruction();
 			}
 		//execute
+			
+		
+		for(Station s : reservationStation.getStationList()) {
+			
+			//if started execution already
+			
+			if (s.getIns().getCycles() > 0) {
+				s.getIns().setCyclesEx(s.getIns().getCycles() - 1);
+			} else {
+			
+				//Arithmetic
+				if (isArithmetic(s)&& s.getqJ() == 0 && s.getqK() == 0 && !s.getIns().isStartedEx()) {
+					reservationStation.execute(s);
+				}
+				if (s instanceof LoadStation && s.getqJ() == 0) {
+					s.setAddress(Registers.intArrayToInt(s.getvJ()) + s.getAddress());
+					reservationStation.execute(s);
+					
+					
+				}
+				if (s instanceof StoreStation && s.getqJ() == 0) {
+					/*
+					 * TODO
+					 * 	1- Rediscuss the design of the ROB as the destination attribute in
+					 * reservation station does not imply anything, to find the ROB entry
+					 * of an instruction it must be all looked up
+					 */
+					RobEntry insROB;
+					for(RobEntry tmp : reorderBuffer.getBuffer()) {
+						/* Need verification regarding the comparison with double equal,
+						* as the instruction reference is supposed to be the same
+						*/
+						if (tmp.getInstruction() == s.getIns()) {
+							insROB = tmp;
+							break;
+						}
+					}
+					insROB.setDest("" + (Registers.intArrayToInt(s.getvJ()) + s.getAddress()));
+					/*
+					 * Count cycles in write not in execute
+					 */
+				}
+			}
+			
+		}
 		
 		//writeback
 		
@@ -164,5 +210,12 @@ public class Processor {
 	}
 	public static void setProcessor(Processor proc) {
 		Processor.processor = proc;
+	}
+	
+	public boolean isArithmetic(Station s) {
+		return (s instanceof AddStation
+				|| s instanceof SubStation
+				|| s instanceof MulStation
+				|| s instanceof NandStation);
 	}
 }

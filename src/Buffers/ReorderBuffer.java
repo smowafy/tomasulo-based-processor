@@ -52,4 +52,13 @@ public class ReorderBuffer extends Buffer{
 		}
 		return result;
 	}
+
+	public LinkedList<RobEntry> getBuffer() {
+		return buffer;
+	}
+
+	public void setBuffer(LinkedList<RobEntry> buffer) {
+		this.buffer = buffer;
+	}
+	
 }
