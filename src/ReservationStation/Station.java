@@ -82,4 +82,8 @@ public abstract class Station {
 	public void setAddress(int address) {
 		this.address = address;
 	}
+	
+	public void setNotBusy() {
+		this.busy = false;
+	}
 }
