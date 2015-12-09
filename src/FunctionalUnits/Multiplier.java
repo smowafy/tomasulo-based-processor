@@ -4,13 +4,15 @@ import Registers.Registers;
 
 
 public class Multiplier extends FunctionalUnit{
-	private int latency;
 	
-	public int getLatency() {
-		return latency;
+	public Multiplier(int latency) {
+		super(latency);
 	}
-	public void setLatency(int latency) {
-		this.latency = latency;
+	public int getLatency() {
+		return this.latency;
+	}
+	public void setLatency(int x) {
+		this.latency = x;
 	}
 	@Override
 	public int[] doOperation(int []x, int []y) {

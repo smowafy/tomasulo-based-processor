@@ -7,6 +7,7 @@ import Registers.*;
 import ReservationStation.*;
 import Buffers.*;
 
+
 public class Processor {
 	private static Processor processor;
 	private int cycles;
@@ -63,13 +64,13 @@ public class Processor {
 		if(this.insBuffer.isEmpty()){
 			int s = this.insBuffer.getSize();
 			for (int i = s; i > 0 ; i--) {
-				int[] currIns = this.insMemory.getBlock(pc); // getblock to be changed
+				int[] currIns = this.insMemory.getWord(pc); // getblock to be changed
 				if (currIns == null) {
 					break;
 				}
 				else{
 					this.insBuffer.insertInstruction(insConverter(currIns));
-					this.pc += 1; //check 1 or 2
+					this.pc += 1; 
 					this.fetchCycles += this.insMemory.getNumberOfCyclesSpent();
 				}
 			}
@@ -114,12 +115,13 @@ public class Processor {
 						/* Need verification regarding the comparison with double equal,
 						* as the instruction reference is supposed to be the same
 						*/
-						if (tmp.getInstruction() == s.getIns()) {
+						//.euals implemented already for comparisons usage
+						if (tmp.getInstruction().equals(s.getIns())) {
 							insROB = tmp;
+							insROB.setDest("" + (Registers.intArrayToInt(s.getvJ()) + s.getAddress()));
 							break;
 						}
 					}
-					insROB.setDest("" + (Registers.intArrayToInt(s.getvJ()) + s.getAddress()));
 					/*
 					 * Count cycles in write not in execute
 					 */

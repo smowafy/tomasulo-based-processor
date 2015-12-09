@@ -8,9 +8,9 @@ import Tomasulo.Processor;
 
 public class AddStation extends Station{
 
-	public AddStation(String name) {
+	public AddStation(String name, int addl) {
 		super(name);
-		this.setFunit(new Adder());
+		this.setFunit(new Adder(addl));
 	}
 	public void issue(Instruction x){
 		int rob = Processor.getProcessor().getReorderBuffer().getEntryno(x);
@@ -35,7 +35,7 @@ public class AddStation extends Station{
 			}
 		}
 		else{
-			//this.setvJ(Processor.getProcessor().getRegistersFile().getData());
+			this.setvJ(Processor.getProcessor().getRegistersFile().getRegData(rs));
 			this.setqJ(0);
 		}
 		//RT
@@ -51,7 +51,7 @@ public class AddStation extends Station{
 			}
 		}
 		else{
-			//this.setvJ(Processor.getProcessor().getRegistersFile().getData());
+			this.setvJ(Processor.getProcessor().getRegistersFile().getRegData(rt));
 			this.setqK(0);
 		}
 		

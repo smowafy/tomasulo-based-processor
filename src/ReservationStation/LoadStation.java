@@ -9,9 +9,9 @@ import Tomasulo.Processor;
 
 public class LoadStation extends Station{
 
-	public LoadStation(String name) {
+	public LoadStation(String name, int addl) {
 		super(name);
-		this.setFunit(new Loader());
+		this.setFunit(new Loader(addl));
 	}
 
 	@Override
@@ -37,7 +37,7 @@ public class LoadStation extends Station{
 			}
 		}
 		else{
-			//this.setvJ(Processor.getProcessor().getRegistersFile().getData());
+			this.setvJ(Processor.getProcessor().getRegistersFile().getRegData(rs));
 			this.setqJ(0);
 		}
 		

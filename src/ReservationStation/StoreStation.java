@@ -8,9 +8,9 @@ import Tomasulo.Processor;
 
 public class StoreStation extends Station{
 
-	public StoreStation(String name) {
+	public StoreStation(String name, int addl) {
 		super(name);
-		this.setFunit(new Adder());
+		this.setFunit(new Adder(addl));
 	}
 
 	@Override
@@ -36,7 +36,7 @@ public class StoreStation extends Station{
 			}
 		}
 		else{
-			//this.setvJ(Processor.getProcessor().getRegistersFile().getData());
+			this.setvJ(Processor.getProcessor().getRegistersFile().getRegData(rs));
 			this.setqJ(0);
 		}
 		//RT
@@ -52,7 +52,7 @@ public class StoreStation extends Station{
 			}
 		}
 		else{
-			//this.setvJ(Processor.getProcessor().getRegistersFile().getData());
+			this.setvJ(Processor.getProcessor().getRegistersFile().getRegData(rt));
 			this.setqK(0);
 		}
 		
