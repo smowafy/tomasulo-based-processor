@@ -155,8 +155,10 @@ public class Processor {
 		
 		
 		
-		//commit
-			
+		//Commit ==> commits only if the head is ready
+		if (Processor.getProcessor().getReorderBuffer().getFirstEntry().isReady()) {
+			Processor.getProcessor().getReorderBuffer().commit();
+		}
 		}
 		//increment cycles
 		setCycles(getCycles() + 1);

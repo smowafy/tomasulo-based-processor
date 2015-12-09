@@ -60,7 +60,7 @@ public class AddiStation extends Station{
 		this.setAddress(((AddiIns)x).getimmm());
 		
 		//upDate RegisterStat
-		Processor.getProcessor().getRegisterStat().getReg((int)rt.charAt(1)).setBusy(true);
+		Processor.getProcessor().getRegisterStat().getReg((int)rt.charAt(1)).setBusy();
 		Processor.getProcessor().getRegisterStat().getReg((int)rt.charAt(1)).setReorder(rob);
 
 	}

@@ -21,6 +21,10 @@ public class RegisterStat {
 		 int index = reg.charAt(1);
 		 return ((RegisterStatEntry)this.registers.get(index)).getReorder();
 	 }
+	 public void resetBusy(String reg){
+		 int index = reg.charAt(1);
+		 this.registers.get(index).resetBusy();
+	 }
 	 public RegisterStatEntry getReg(int i){
 		 return this.registers.get(i);
 	 }

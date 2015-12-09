@@ -12,14 +12,20 @@ public class RegisterStatEntry {
 	public boolean getBusy(){
 		return this.busy;
 	}
+	public void setBusy(){
+		this.busy=true;
+	}
 	public void setReorder(int i){
 		this.reorder = 1;
 	}
-	public void setBusy(boolean x){
-		this.busy = x;
+	public void resetBusy(){
+		this.busy = false;
 	}
+
 	public int getReorder(){
 		return this.reorder;
 	}
+
+
 
 }
