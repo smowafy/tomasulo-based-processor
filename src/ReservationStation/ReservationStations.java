@@ -45,4 +45,20 @@ public class ReservationStations {
 		
 	}
 	
+	public void execute(Station s) {
+		Instruction curr = s.getIns();
+		curr.setCyclesEx(s.getFunit().getLatency());
+		curr.setStartedEx(true);
+	}
+
+	public LinkedList<Station> getStationList() {
+		return stationList;
+	}
+
+	public void setStationList(LinkedList<Station> stationList) {
+		this.stationList = stationList;
+	}
+	
+	
+	
 }

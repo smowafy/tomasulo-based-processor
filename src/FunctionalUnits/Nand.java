@@ -1,7 +1,7 @@
 package FunctionalUnits;
 
 
-public class Nand implements FunctionalUnit{
+public class Nand extends FunctionalUnit{
 	private int latency;
 	
 	public int getLatency() {

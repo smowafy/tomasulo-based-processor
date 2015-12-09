@@ -3,7 +3,7 @@ package FunctionalUnits;
 import Registers.Registers;
 
 
-public class Multiplier implements FunctionalUnit{
+public class Multiplier extends FunctionalUnit{
 	private int latency;
 	
 	public int getLatency() {
