@@ -49,6 +49,7 @@ public class ReservationStations {
 		Instruction curr = s.getIns();
 		curr.setCyclesEx(s.getFunit().getLatency());
 		curr.setStartedEx(true);
+		s.getFunit().doOpAndSave(s.getvJ(), s.getvK());
 	}
 
 	public LinkedList<Station> getStationList() {

@@ -130,6 +130,29 @@ public class Processor {
 		
 		//writeback
 		
+		for(RobEntry entry : reorderBuffer.getBuffer()) {
+			Instruction inst = entry.getInstruction();
+			Station station = getStationForInstruction(inst);
+			if (inst.getCycles() == 0 && inst.isStartedEx()) {
+				int[] result = station.getFunit().getResult();
+				int resultInt = Registers.intArrayToInt(result);
+				if (inst instanceof StoreIns) {
+					entry.setValue(Registers.intArrayToInt(station.getvK()));
+				} else {
+					int b = station.getDest();
+					station.setNotBusy();
+					
+					CDB(b, result);
+					
+					entry.setValue(resultInt);
+					entry.setReady(true);
+					
+				}
+			}
+		}
+		
+		
+		
 		//commit
 			
 		}
@@ -217,5 +240,27 @@ public class Processor {
 				|| s instanceof SubStation
 				|| s instanceof MulStation
 				|| s instanceof NandStation);
+	}
+	
+	public Station getStationForInstruction(Instruction ins) {
+		for(Station s : reservationStation.getStationList()) {
+			if (s.getIns() == ins) {
+				return s;
+			}
+		}
+		return null;
+	}
+	
+	public void CDB(int b, int[] result){
+		for(Station tmp : reservationStation.getStationList()) {
+			if (tmp.getqJ() == b) {
+				tmp.setvJ(result);
+				tmp.setqJ(0);
+			}
+			if (tmp.getqK() == b) {
+				tmp.setvK(result);
+				tmp.setqK(0);
+			}
+		}
 	}
 }
