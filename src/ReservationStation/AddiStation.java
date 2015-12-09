@@ -8,9 +8,9 @@ import Tomasulo.Processor;
 
 public class AddiStation extends Station{
 
-	public AddiStation(String name) {
+	public AddiStation(String name, int addl) {
 		super(name);
-		this.setFunit(new Adder());
+		this.setFunit(new Adder(addl));
 	}
 
 	@Override

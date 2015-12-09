@@ -4,20 +4,27 @@ import Registers.Registers;
 import Tomasulo.Processor;
 
 public class Loader extends FunctionalUnit{
-	private int latency;
 	
-	public int getLatency() {
-		return latency;
+	public Loader(int latency) {
+		super(latency);
 	}
-	public void setLatency(int latency) {
-		this.latency = latency;
-	}
+
 	@Override
 	public int[] doOperation(int[] x, int[] y) {
 		int a = Registers.intArrayToInt(x);
 		int b = Registers.intArrayToInt(y);
 		int address = a+b;
-		return Processor.getProcessor().getDataMemory().getBlock(address); //getBlock to be changed
+		int [] result = Processor.getProcessor().getDataMemory().getWord(address); 
+		// adding number of cycles spent to read the data in immediate address
+		this.setLatency(this.getLatency()+Processor.getProcessor().getDataMemory().getNumberOfCyclesSpent());
+		return result;//getBlock to be changed
+	}
+
+	public int getLatency() {
+		return this.latency;
+	}
+	public void setLatency(int x) {
+		this.latency = x;
 	}
 	
 	// nzbat latency // memory // pc 

@@ -4,13 +4,14 @@ import Registers.Registers;
 
 
 public class Adder extends FunctionalUnit{
-	private int latency;
-	
-	public int getLatency() {
-		return latency;
+	public Adder(int latency) {
+		super(latency);
 	}
-	public void setLatency(int latency) {
-		this.latency = latency;
+	public int getLatency() {
+		return this.latency;
+	}
+	public void setLatency(int x) {
+		this.latency = x;
 	}
 
 	@Override

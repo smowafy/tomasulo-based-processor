@@ -8,27 +8,28 @@ public class ReservationStations {
 	private int size;
 	private LinkedList<Station> stationList;
 	
-	public ReservationStations(int load, int store, int add, int sub, int mul, int addi, int nand){
+	public ReservationStations(int load, int store, int add, int sub, int mul, int addi, int nand,
+			int addl, int subl, int mull,int nandl){
 		for (int i = 0; i < load; i++) {
-			this.stationList.add(new LoadStation("load"+i));
+			this.stationList.add(new LoadStation("load"+i, addl));
 		}
 		for (int i = 0; i < store; i++) {
-			this.stationList.add(new StoreStation("Store"+i));
+			this.stationList.add(new StoreStation("Store"+i, addl));
 		}
 		for (int i = 0; i < add; i++) {
-			this.stationList.add(new AddStation("Add"+i));
+			this.stationList.add(new AddStation("Add"+i,addl));
 		}
 		for (int i = 0; i < sub; i++) {
-			this.stationList.add(new SubStation("Sub"+i));
+			this.stationList.add(new SubStation("Sub"+i,subl));
 		}
 		for (int i = 0; i < mul; i++) {
-			this.stationList.add(new MulStation("Mul"+i));
+			this.stationList.add(new MulStation("Mul"+i,mull));
 		}
 		for (int i = 0; i < addi; i++) {
-			this.stationList.add(new AddiStation("Adi"+i));
+			this.stationList.add(new AddiStation("Adi"+i,addl));
 		}
 		for (int i = 0; i < nand; i++) {
-			this.stationList.add(new NandStation("Nand"+i));
+			this.stationList.add(new NandStation("Nand"+i,nandl));
 		}
 	}
 	

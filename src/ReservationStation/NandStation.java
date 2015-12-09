@@ -9,9 +9,9 @@ import Tomasulo.Processor;
 
 public class NandStation extends Station{
 
-	public NandStation(String name) {
+	public NandStation(String name, int nandl) {
 		super(name);
-		this.setFunit(new Nand());
+		this.setFunit(new Nand(nandl));
 	}
 	public void issue(Instruction x){
 		int rob = Processor.getProcessor().getReorderBuffer().getEntryno(x);
@@ -36,7 +36,7 @@ public class NandStation extends Station{
 			}
 		}
 		else{
-			//this.setvJ(Processor.getProcessor().getRegistersFile().getData());
+			this.setvJ(Processor.getProcessor().getRegistersFile().getRegData(rs));
 			this.setqJ(0);
 		}
 		//RT
@@ -52,7 +52,7 @@ public class NandStation extends Station{
 			}
 		}
 		else{
-			//this.setvJ(Processor.getProcessor().getRegistersFile().getData());
+			this.setvJ(Processor.getProcessor().getRegistersFile().getRegData(rt));
 			this.setqK(0);
 		}
 		
