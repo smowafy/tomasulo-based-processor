@@ -8,6 +8,7 @@ import java.util.StringTokenizer;
 import Buffers.InstructionBuffer;
 import Buffers.ReorderBuffer;
 import MemoryHierarchy.MemorySet;
+import Parser.parser;
 import Registers.RegisterStat;
 import Registers.Registers;
 import ReservationStation.ReservationStations;
@@ -17,6 +18,7 @@ import Tomasulo.Processor;
 public class InputOutput {
 
 	BufferedReader br;
+	public static parser parser;
 
 	public InputOutput() throws Exception{
 		br = new BufferedReader(new InputStreamReader(System.in));
@@ -130,7 +132,7 @@ public class InputOutput {
 			program.add(s);
 		}
 		// Send program to processor
-		
+		parser = new parser(program, startingAddress);
 		System.out.println();
 		System.out.println("Data:");
 		System.out.println("	Specify data and address in the form 'data address' without quotations, address in haxadecimal, and empty line at the end: ");
