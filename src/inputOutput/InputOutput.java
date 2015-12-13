@@ -121,7 +121,7 @@ public class InputOutput {
 		System.out.println();
 		System.out.println("Program:");
 		System.out.println("	Specify starting address:");
-		String startingAddress = br.readLine();
+		int startingAddress = Integer.parseInt(br.readLine());
 		
 		System.out.println("	 Enter program (in the form 'op dest src trg' without quotations, empty line at the end): ");
 		ArrayList<String> program = new ArrayList<String>();
