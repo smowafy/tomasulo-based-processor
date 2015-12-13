@@ -12,7 +12,7 @@ public class TestingMemory {
 		cacheSizes[0] = 16;
 		blockSizes[0] = 2;
 		latencies[0] = 100;
-		MemorySet memorySet = new MemorySet(1, assocs, cacheSizes, blockSizes, latencies, 1);
+		/*MemorySet memorySet = new MemorySet(1, assocs, cacheSizes, blockSizes, latencies, 1);
 		int[] word1 = new int[16];
 		int[] word2 = new int[16];
 		for(int i = 0; i < 16; i++) {
@@ -24,6 +24,6 @@ public class TestingMemory {
 		memorySet.storeWord(4,  word2);
 		memorySet.getMainMemory().printMainMemory();
 		memorySet.storeWord(20, word1);
-		memorySet.getMainMemory().printMainMemory();
+		memorySet.getMainMemory().printMainMemory();*/
 	}
 }
