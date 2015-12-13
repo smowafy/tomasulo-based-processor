@@ -61,7 +61,7 @@ public class ReorderBuffer extends Buffer{
 		else{
 			if (temp.getInstruction().getType() == "Store") {
 				//Mem[ROB[h].Destination] = ROB[h].Value;
-				//Processor.getProcessor().getDataMemory().writetomemo();
+				//Processor.getProcessor().getDataMemory().storeWord();
 			}
 			else{
 				Processor.getProcessor().getRegistersFile().writeToReg(Registers.IntToIntArray(temp.getValue()), dest);
