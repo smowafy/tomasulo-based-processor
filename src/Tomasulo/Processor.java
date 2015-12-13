@@ -14,20 +14,18 @@ public class Processor {
 	private int fetchCycles;
 	private int pc;
 	private MemorySet dataMemory;
-	private MemorySet insMemory;
 	private InstructionBuffer insBuffer;
 	private ReservationStations reservationStation;
 	private ReorderBuffer reorderBuffer;
 	private Registers registersFile;
 	private RegisterStat registerStat;
 	
-	public void initProcessor(int pc, MemorySet dataMemory,MemorySet insMemory,InstructionBuffer insBuffer,
+	public void initProcessor(int pc, MemorySet dataMemory,InstructionBuffer insBuffer,
 			ReservationStations reservationStation,ReorderBuffer reorderBuffer,Registers registersFile,
 			RegisterStat registerStat){
 		this.setCycles(0);
 		this.setPc(pc);
 		this.setDataMemory(dataMemory);
-		this.setInsMemory(insMemory);
 		this.setRegistersFile(registersFile);
 		this.insBuffer = insBuffer;
 		this.setReservationStation(reservationStation);
@@ -61,10 +59,12 @@ public class Processor {
 	// Run processor
 	public void run(){
 		//fetch == > how fetch one cycle?? // how write one cycle if store??
+		//rediscussed from where we will fetch
+		/**
 		if(this.insBuffer.isEmpty()){
 			int s = this.insBuffer.getSize();
 			for (int i = s; i > 0 ; i--) {
-				int[] currIns = this.insMemory.getWord(pc); // getblock to be changed
+				int[] currIns = this.dataMemory.getWord(pc); // getblock to be changed
 				if (currIns == null) {
 					break;
 				}
@@ -76,6 +76,8 @@ public class Processor {
 			}
 			this.fetchCycles =1;
 		}
+		*/
+		///
 		if (this.fetchCycles==0) {
 		//issue
 			if (!this.reservationStation.ifFull() && !this.reorderBuffer.isFull()) {
@@ -193,11 +195,11 @@ public class Processor {
 	}
 
 	public MemorySet getInsMemory() {
-		return insMemory;
+		return dataMemory;
 	}
 
 	public void setInsMemory(MemorySet insMemory) {
-		this.insMemory = insMemory;
+		this.dataMemory = insMemory;
 	}
 
 	public ReservationStations getReservationStation() {
