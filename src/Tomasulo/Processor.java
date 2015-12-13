@@ -1,5 +1,6 @@
 package Tomasulo;
 
+import inputOutput.InputOutput;
 import Buffers.*;
 import Instructions.*;
 import MemoryHierarchy.*;
@@ -60,11 +61,12 @@ public class Processor {
 	public void run(){
 		//fetch == > how fetch one cycle?? // how write one cycle if store??
 		//rediscussed from where we will fetch
-		/**
+		InputOutput.parser.getInstOpCode(pc);
 		if(this.insBuffer.isEmpty()){
 			int s = this.insBuffer.getSize();
 			for (int i = s; i > 0 ; i--) {
-				int[] currIns = this.dataMemory.getWord(pc); // getblock to be changed
+				//int[] currIns = this.dataMemory.getWord(pc); // getblock to be changed
+				int[] currIns = InputOutput.parser.getInstOpCode(pc);
 				if (currIns == null) {
 					break;
 				}
@@ -76,7 +78,7 @@ public class Processor {
 			}
 			this.fetchCycles =1;
 		}
-		*/
+		
 		///
 		if (this.fetchCycles==0) {
 		//issue
