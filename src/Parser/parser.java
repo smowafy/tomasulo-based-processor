@@ -1,10 +1,10 @@
 package Parser;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
+
 import Registers.Registers;
 
 public class parser {
-	//int [] opcode = new int [16];
 	static ArrayList<int []> opcode = new ArrayList<int []>();
 	static String Rs, Rd, Rt, imm;
 	public parser() {
@@ -85,6 +85,7 @@ public class parser {
 						opcode.get(i)[1]= 1;
 						opcode.get(i)[2]= 1;
 						break;
+			//TODO: opcode of the jump and branching instructions are to be added.
 			default: System.out.println("invalid command");break;
 			}
 		}
