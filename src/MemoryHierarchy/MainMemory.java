@@ -8,9 +8,16 @@ import java.util.Set;
 public class MainMemory {
 	
 	private HashMap<Integer, int[]> memory;
+	private int latency;
 	
-	public MainMemory() {
+	public MainMemory(int latency) {
 		memory = new HashMap<Integer, int[]>();
+		this.latency = latency;
+	}
+	public MainMemory(HashMap<Integer, int[]> init, int latency) {
+		if (init != null) memory = init;
+		else memory = new HashMap<Integer, int[]>();
+		this.latency = latency;
 	}
 	
 	public void addEntry(int address, int[] value) {
@@ -18,6 +25,7 @@ public class MainMemory {
 	}
 	
 	public int[][] fetchData(int address, int blockSize) {
+		MemorySet.cycles += this.latency;
 		int[][] result = new int [blockSize][];
 		int startAddress = address/blockSize*blockSize;
 		for(int i = 0; i < blockSize; i++) {
@@ -31,6 +39,7 @@ public class MainMemory {
 	}
 	
 	public void storeBlock(int address, int[][] data) {
+		MemorySet.cycles += this.latency;
 		int startingAddress = address/data.length*data.length;
 		for(int i = 0; i < data.length; i++) {
 			if (data[i] == null) continue;

@@ -1,5 +1,6 @@
 package MemoryHierarchy;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.LinkedList;
 
 
@@ -17,14 +18,14 @@ public class MemorySet {
 	//policy 0 --> write through
 	
 	
-	public MemorySet(int numberOfLevels, int[] assocs, int[] cacheszs, int[] blockszs, int[] latencies, int policy) {
+	public MemorySet(int numberOfLevels, int[] assocs, int[] cacheszs, int[] blockszs, int[] latencies, int policy, int mainMemoryLatency, HashMap<Integer, int[]> initialMemory) {
 		if (policy == 0) {
 			writeThrough = true;
 		} else {
 			writeThrough = false;
 		}
 		cycles = 0;
-		mainMemory = new MainMemory();
+		mainMemory = new MainMemory(initialMemory, mainMemoryLatency);
 		caches = new LinkedList<Cache>();
 		//int x, y, z, cyc;
 		
