@@ -53,7 +53,7 @@ public class ReorderBuffer extends Buffer{
 		String dest = temp.getDest();
 		if (temp.getInstruction().getType() == "BEQ") {
 			//if mispredicted -> Subtraction result not equal 0
-			if (temp.getValue() != 0) {
+			if (temp.getValue() != null) {
 				//clear ROB[h], RegisterStat; fetch branch dest;
 			}
 			
@@ -61,10 +61,11 @@ public class ReorderBuffer extends Buffer{
 		else{
 			if (temp.getInstruction().getType() == "Store") {
 				//Mem[ROB[h].Destination] = ROB[h].Value;
-				//Processor.getProcessor().getDataMemory().storeWord();
+				int address = Integer.parseInt(dest);
+				Processor.getProcessor().getDataMemory().storeWord(address,temp.getValue());
 			}
 			else{
-				Processor.getProcessor().getRegistersFile().writeToReg(Registers.IntToIntArray(temp.getValue()), dest);
+				Processor.getProcessor().getRegistersFile().writeToReg((temp.getValue()), dest);
 			}
 		}
 		//ROB[h].Busy = no; we already remove the entry

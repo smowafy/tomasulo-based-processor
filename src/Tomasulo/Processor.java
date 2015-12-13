@@ -138,16 +138,17 @@ public class Processor {
 			Station station = getStationForInstruction(inst);
 			if (inst.getCycles() == 0 && inst.isStartedEx()) {
 				int[] result = station.getFunit().getResult();
-				int resultInt = Registers.intArrayToInt(result);
+				//int resultInt = Registers.intArrayToInt(result);
 				if (inst instanceof StoreIns) {
-					entry.setValue(Registers.intArrayToInt(station.getvK()));
+					entry.setValue((station.getvK()));
 				} else {
 					int b = station.getDest();
 					station.setNotBusy();
 					
 					CDB(b, result);
 					
-					entry.setValue(resultInt);
+					//entry.setValue(resultInt);
+					entry.setValue(result);
 					entry.setReady(true);
 					
 				}
