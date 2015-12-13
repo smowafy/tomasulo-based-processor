@@ -60,7 +60,7 @@ public class MulStation extends Station{
 		this.setDest((int)rd.charAt(1));
 		
 		//upDate RegisterStat
-		Processor.getProcessor().getRegisterStat().getReg((int)rd.charAt(1)).setBusy(true);
+		Processor.getProcessor().getRegisterStat().getReg((int)rd.charAt(1)).setBusy();
 		Processor.getProcessor().getRegisterStat().getReg((int)rd.charAt(1)).setReorder(rob);
 
 	}

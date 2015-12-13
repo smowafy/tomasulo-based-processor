@@ -45,7 +45,7 @@ public class LoadStation extends Station{
 		this.setAddress(((LoadIns)x).getimmm());
 		
 		//upDate RegisterStat
-		Processor.getProcessor().getRegisterStat().getReg((int)rt.charAt(1)).setBusy(true);
+		Processor.getProcessor().getRegisterStat().getReg((int)rt.charAt(1)).setBusy();
 		Processor.getProcessor().getRegisterStat().getReg((int)rt.charAt(1)).setReorder(rob);
 
 	}

@@ -1,8 +1,10 @@
 package Buffers;
 
 import java.util.LinkedList;
+import Registers.*;
 
 import Instructions.*;
+import Tomasulo.Processor;
 
 public class ReorderBuffer extends Buffer{
 	//private int size;
@@ -42,6 +44,33 @@ public class ReorderBuffer extends Buffer{
 	}
 	public RobEntry getEntry(int i){
 		return this.buffer.get(i);
+	}
+	public RobEntry getFirstEntry(){
+		return this.buffer.peek();
+	}
+	public void commit(){
+		RobEntry temp = this.buffer.pollFirst();
+		String dest = temp.getDest();
+		if (temp.getInstruction().getType() == "BEQ") {
+			//if mispredicted -> Subtraction result not equal 0
+			if (temp.getValue() != 0) {
+				//clear ROB[h], RegisterStat; fetch branch dest;
+			}
+			
+		}
+		else{
+			if (temp.getInstruction().getType() == "Store") {
+				//Mem[ROB[h].Destination] = ROB[h].Value;
+				//Processor.getProcessor().getDataMemory().storeWord();
+			}
+			else{
+				Processor.getProcessor().getRegistersFile().writeToReg(Registers.IntToIntArray(temp.getValue()), dest);
+			}
+		}
+		//ROB[h].Busy = no; we already remove the entry
+		if (Processor.getProcessor().getRegisterStat().getReorder(dest) == temp.getEntryno()) {
+			Processor.getProcessor().getRegisterStat().resetBusy(dest);
+		}
 	}
 	public int getEntryno(Instruction x){
 		int result = 0;

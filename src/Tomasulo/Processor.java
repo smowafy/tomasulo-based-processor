@@ -71,9 +71,10 @@ public class Processor {
 				else{
 					this.insBuffer.insertInstruction(insConverter(currIns));
 					this.pc += 1; 
-					this.fetchCycles += this.insMemory.getNumberOfCyclesSpent();
+					//this.fetchCycles += this.insMemory.getNumberOfCyclesSpent();
 				}
 			}
+			this.fetchCycles =1;
 		}
 		if (this.fetchCycles==0) {
 		//issue
@@ -155,8 +156,10 @@ public class Processor {
 		
 		
 		
-		//commit
-			
+		//Commit ==> commits only if the head is ready
+		if (Processor.getProcessor().getReorderBuffer().getFirstEntry().isReady()) {
+			Processor.getProcessor().getReorderBuffer().commit();
+		}
 		}
 		//increment cycles
 		setCycles(getCycles() + 1);
