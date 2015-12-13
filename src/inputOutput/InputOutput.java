@@ -8,6 +8,7 @@ import java.util.StringTokenizer;
 import Buffers.InstructionBuffer;
 import Buffers.ReorderBuffer;
 import MemoryHierarchy.MemorySet;
+import Registers.RegisterStat;
 import Registers.Registers;
 import ReservationStation.ReservationStations;
 import Tomasulo.Processor;
@@ -145,8 +146,7 @@ public class InputOutput {
 		}
 		MemorySet memSet = new MemorySet(n, associativities, sizes, widths, hitTimes, policy, mainMemoryAccessTime, programData);
 		// Send data to processor
-		Processor processor = new Processor();
-		processor.initProcessor(startingAddress, memSet, instBuffer, rs, rob, new Registers(), new RegisterStat(8));
+		Processor.getProcessor().initProcessor(startingAddress, memSet, instBuffer, rs, rob, new Registers(), new RegisterStat(8));
 	}
 	
 	
