@@ -11,7 +11,7 @@ public class Registers {
     {
         Registers = new HashMap<String, int[]>();
         //initializing the registers
-        for(int i = 0; i< 9; i++)
+        for(int i = 0; i< 8; i++)
         {
             String Reg_name;
             Reg_name = "R"+i ;
