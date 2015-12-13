@@ -7,10 +7,21 @@ import Registers.Registers;
 public class parser {
 	static ArrayList<int []> opcode = new ArrayList<int []>();
 	static String Rs, Rd, Rt, imm;
+	
+	int startAddress;
+	
+	
+	public int[] getInstOpCode(int address) {
+		return opcode.get(address - startAddress);
+	}
+	
+	
+	
 	public parser() {
+		
 	}
 	//constructor
-	public parser(ArrayList<String> program, String startAddress)
+	public parser(ArrayList<String> program, int startAddress)
 	{
 		/*passes on the lines of instructions of the program written by the user
 		 * stored in the arraylist called program and brings back the 
@@ -18,6 +29,7 @@ public class parser {
 		 * in the same order.
 		 * CONVENTIONS: -instructions are written in Upper case
 		 * 				-space separated tokens*/
+		this.startAddress = startAddress;
 		for(int i = 0; i<program.size(); i++)
 		{
 			opcode.add(new int[16]);
