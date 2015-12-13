@@ -71,9 +71,10 @@ public class Processor {
 				else{
 					this.insBuffer.insertInstruction(insConverter(currIns));
 					this.pc += 1; 
-					this.fetchCycles += this.insMemory.getNumberOfCyclesSpent();
+					//this.fetchCycles += this.insMemory.getNumberOfCyclesSpent();
 				}
 			}
+			this.fetchCycles =1;
 		}
 		if (this.fetchCycles==0) {
 		//issue
@@ -137,16 +138,17 @@ public class Processor {
 			Station station = getStationForInstruction(inst);
 			if (inst.getCycles() == 0 && inst.isStartedEx()) {
 				int[] result = station.getFunit().getResult();
-				int resultInt = Registers.intArrayToInt(result);
+				//int resultInt = Registers.intArrayToInt(result);
 				if (inst instanceof StoreIns) {
-					entry.setValue(Registers.intArrayToInt(station.getvK()));
+					entry.setValue((station.getvK()));
 				} else {
 					int b = station.getDest();
 					station.setNotBusy();
 					
 					CDB(b, result);
 					
-					entry.setValue(resultInt);
+					//entry.setValue(resultInt);
+					entry.setValue(result);
 					entry.setReady(true);
 					
 				}
@@ -155,8 +157,10 @@ public class Processor {
 		
 		
 		
-		//commit
-			
+		//Commit ==> commits only if the head is ready
+		if (Processor.getProcessor().getReorderBuffer().getFirstEntry().isReady()) {
+			Processor.getProcessor().getReorderBuffer().commit();
+		}
 		}
 		//increment cycles
 		setCycles(getCycles() + 1);

@@ -6,7 +6,7 @@ public class RobEntry {
 	private int entryno;
 	private Instruction instruction;//instruction obj
 	private String dest;
-	private int value;
+	private int[] value;
 	private boolean ready;
 	private boolean head;
 	private boolean tail;
@@ -15,7 +15,7 @@ public class RobEntry {
 		this.setEntryno(entryno);
 		this.setInstruction(ins);
 		this.setDest(dest);
-		this.setValue(-1);
+		this.setValue(null);
 		this.setReady(false);			
 	}
 	public void setHead(){
@@ -51,10 +51,10 @@ public class RobEntry {
 	public void setDest(String dest) {
 		this.dest = dest;
 	}
-	public int getValue() {
+	public int[] getValue() {
 		return value;
 	}
-	public void setValue(int value) {
+	public void setValue(int[] value) {
 		this.value = value;
 	}
 	public boolean isHead() {

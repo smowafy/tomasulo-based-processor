@@ -28,7 +28,7 @@ public class LoadStation extends Station{
 		if (Processor.getProcessor().getRegisterStat().checkBusy(rs)) {
 			int reorder = Processor.getProcessor().getRegisterStat().getReorder(rs);
 			if (Processor.getProcessor().getReorderBuffer().getEntry(reorder).isReady()) {
-				int[] vJ = Registers.IntToIntArray(Processor.getProcessor().getReorderBuffer().getEntry(reorder).getValue());
+				int[] vJ = (Processor.getProcessor().getReorderBuffer().getEntry(reorder).getValue());
 				this.setvJ(vJ);
 				this.setqJ(0);
 			}
@@ -45,7 +45,7 @@ public class LoadStation extends Station{
 		this.setAddress(((LoadIns)x).getimmm());
 		
 		//upDate RegisterStat
-		Processor.getProcessor().getRegisterStat().getReg((int)rt.charAt(1)).setBusy(true);
+		Processor.getProcessor().getRegisterStat().getReg((int)rt.charAt(1)).setBusy();
 		Processor.getProcessor().getRegisterStat().getReg((int)rt.charAt(1)).setReorder(rob);
 
 	}
